@@ -1,4 +1,4 @@
-# CI/CD with Travis [![Build Status](https://travis-ci.com/solar-probe/travis-poc.svg?branch=master)](https://travis-ci.com/solar-probe/travis-poc)
+# CI/CD with Travis [![Build Status](https://api.travis-ci.org/solar-probe/travis-poc.svg?branch=master)](https://travis-ci.com/solar-probe/travis-poc)
 
 ## Run locally
 
