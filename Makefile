@@ -35,7 +35,7 @@ build-release:
 	docker build --build-arg COMMIT_SHA='${COMMIT_SHA}' -t travis-poc:${BUILD_NUM} .
 
 .PHONY: test
-test:
+test: build-dev
 	@echo Running containerized tests
 	docker run --user 1001 -p 8080:8080 --rm travis-poc:${BUILD_NUM}-dev npm run test
 
@@ -50,8 +50,7 @@ run-local: build-dev
 	docker run --user 1001 -p 8080:8080 --rm travis-poc:${BUILD_NUM}-dev
 
 .PHONY: debug-local
-# debug-local: build-dev  # (need to add conditional for this to work properly)
-debug-local:
+debug-local: build-dev
 	docker run --user 1001 -p 8080:8080 -it travis-poc:${BUILD_NUM}-dev bash
 
 # ----
