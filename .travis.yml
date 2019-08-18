@@ -21,5 +21,10 @@ jobs:
       - echo Building release docker image
       - make build-release
 
+    - stage: Mark deployment in monitoring tools
+      script:
+      - echo Send notification to Grafana, Datadog etc
+      - echo Not implemented
+
 notifications:
   email: false
