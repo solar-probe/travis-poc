@@ -20,6 +20,8 @@ jobs:
       script:
       - echo Building release docker image
       - make build-release
+      - echo Send notification to Grafana, Datadog etc
+      - echo Not implemented
 
 notifications:
   email: false
