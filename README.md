@@ -27,7 +27,7 @@ Build image with default tag and deploy to local Docker Desktop kubernetes
 $ make deploy
 ```
 
-This command builds image locally, creates kubernetes manifests using containerized `kustomize` tool, and applies it to kubernetes cluster `technical-interview` namespace using local `kubectl`
+This command builds image locally, creates kubernetes manifests using containerized `kustomize` tool, and applies it to kubernetes cluster `technical-test` namespace using local `kubectl`
 Because it is not known the cluster configuration where this app will be deployed, configuring `kubectl` is out of scope
 
 ### Some Limitations
