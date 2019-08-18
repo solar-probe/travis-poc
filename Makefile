@@ -66,7 +66,7 @@ build-bin:
 	docker build -t ${BIN_IMAGE} ./toolset
 
 .PHONY: kustomize
-kustomize: build-bin
+kustomize:
 	@echo Building kubernetes manifest with kustomize
 	${BIN} kustomize build /infra/overlays/production/ > ${MANIFEST_PATH}
 
@@ -76,7 +76,7 @@ apply:
 	${KUBECTL} apply -f ${MANIFEST_PATH}
 
 .PHONY: deploy
-deploy: build-bin kustomize apply
+deploy: build-dev build-bin kustomize apply
 
 .PHONY: uninstall-k8s-resources
 uninstall-k8s-resources:
