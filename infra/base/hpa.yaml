@@ -1,0 +1,17 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+  labels:
+    app: version-service
+    env: production
+  name: version-service
+  namespace: travis-poc
+spec:
+  maxReplicas: 20
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: version-service
+  targetCPUUtilizationPercentage: 80

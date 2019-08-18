@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: version-service
+    env: production
+  name: version-service
+  namespace: travis-poc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: version-service
+  sessionAffinity: None
+  type: ClusterIP

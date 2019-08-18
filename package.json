@@ -1,0 +1,38 @@
+{
+  "name": "platform-eng-test",
+  "version": "1.0.0",
+  "author": "Olga Mirensky",
+  "description": "Exploring Travis-CI",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/solar-probe/travis-poc.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solar-probe/travis-poc/issues"
+  },
+  "homepage": "https://github.com/solar-probe/travis-poc#readme",
+  "main": "src/server.js",
+  "scripts": {
+    "lint": "standard | snazzy",
+    "test": "NODE_ENV=test mocha",
+    "test:unit": "NODE_ENV=test mocha test/unit/**/*.js",
+    "test:integration": "NODE_ENV=test mocha test/integration/**/*.js",
+    "start": "NODE_ENV=${NODE_ENV:-development} node src/server.js"
+  },
+  "pre-commit": {
+    "run": [
+      "lint",
+      "test"
+    ]
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "pre-commit": "^1.2.2",
+    "snazzy": "^8.0.0",
+    "standard": "^13.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

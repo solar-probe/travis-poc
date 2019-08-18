@@ -1,0 +1,80 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: version-service
+    env: production
+  name: version-service
+  namespace: travis-poc
+spec:
+  minReadySeconds: 10
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: version-service
+      env: production
+  strategy:
+    rollingUpdate:
+      maxSurge: 20%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: version-service
+        env: production
+    spec:
+      containers:
+      - args:
+        - node --max_old_space_size=200 src/server.js
+        command:
+        - /bin/bash
+        - -c
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: COMMIT_SHA
+          value: c5df516bd309e1c3a44b8eab78a2b1bd0476372f
+        image: travis-poc:i-dont-exist
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 3
+        name: version-service
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ready
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 80m
+            memory: 300Mi
+          requests:
+            cpu: 50m
+            memory: 200Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        runAsUser: 1001
+      terminationGracePeriodSeconds: 30

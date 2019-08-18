@@ -1,0 +1,25 @@
+language: minimal
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build test docker image
+      script:
+      - echo Building docker image for testing
+      - make build-dev
+
+    - stage: test
+      script:
+      - echo Running containerized tests
+      - make test
+
+    - stage: build release docker image
+      if: branch = master
+      script:
+      - echo Building release docker image
+      - make build-release
+
+notifications:
+  email: false

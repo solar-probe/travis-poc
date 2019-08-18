@@ -1,0 +1,25 @@
+# adjusted from  https://github.com/mochajs/mocha/blob/a4f1a442a22e53ad629a5f565d4a17b687afce53/example/config/.mocharc.yml
+allow-uncaught: false
+async-only: false
+bail: false
+check-leaks: true
+color: true
+delay: false
+diff: true
+exit: true
+extension:
+  - js
+forbid-only: false
+forbid-pending: false
+full-trace: false
+inline-diffs: false
+recursive: false
+reporter: spec
+retries: 1
+slow: 75
+sort: false
+spec: test/**/*.spec.js
+timeout: 2000
+watch: false
+ui: bdd
+

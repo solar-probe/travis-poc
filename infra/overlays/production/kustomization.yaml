@@ -1,0 +1,6 @@
+bases:
+  - ../../base
+images:
+- name: travis-poc
+  newTag: 1-dev
+namespace: technical-test

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: version-service
+    env: production
+  name: version-service
+  namespace: travis-poc
+spec:
+  rules:
+  - host: version-service.mydomain.com
+    http:
+      paths:
+      - backend:
+          serviceName: version-service
+          servicePort: 80
